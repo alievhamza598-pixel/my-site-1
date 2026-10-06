@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DrivePro — Автошкола</title>
+
+    <meta name="description"
+          content="Автошкола DrivePro — обучение вождению категорий A, B и C. Теория, практика и подготовка к экзамену.">
+
+    <style>
+        /* =========================
+           ОСНОВНЫЕ НАСТРОЙКИ
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #ff5b22;
+            --primary-dark: #e44712;
+            --dark: #101318;
+            --dark-light: #191e26;
+            --white: #ffffff;
+            --gray: #69707a;
+            --light: #f5f7fa;
+            --border: #e5e7eb;
+            --green: #25d366;
+            --blue: #229ed9;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--dark);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+        }
+
+        .container {
+            width: min(1150px, 92%);
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 90px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            display: inline-block;
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: rgba(16, 19, 24, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar {
+            min-height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ddd;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-button {
+            background: var(--primary);
+            padding: 11px 18px;
+            border-radius: 8px;
+            color: white !important;
+        }
+
+        .menu-btn {
+            display: none;
+            border: none;
+            background: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.72)),
+                url("https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=2000&q=80")
+                center/cover;
+            display: flex;
+            align-items: center;
+            color: white;
+            padding-top: 75px;
+        }
+
+        .hero-content {
+            max-width: 720px;
+        }
+
+        .hero-content .badge {
+            display: inline-block;
+            background: rgba(255,91,34,.15);
+            border: 1px solid rgba(255,91,34,.5);
+            color: #ff9a77;
+            padding: 8px 15px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 6vw, 76px);
+            line-height: 1.05;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            color: #ddd;
+            font-size: 19px;
+            margin-bottom: 35px;
+            max-width: 650px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: .3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            border: 1px solid #fff;
+            color: white;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--dark);
+        }
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats {
+            background: var(--dark);
+            color: white;
+            padding: 35px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .stat h3 {
+            color: var(--primary);
+            font-size: 36px;
+        }
+
+        .stat p {
+            color: #bbb;
+        }
+
+        /* =========================
+           COURSES
+        ========================= */
+
+        .courses {
+            background: var(--light);
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: .3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,.1);
+        }
+
+        .course-top {
+            padding: 30px;
+            background: var(--dark);
+            color: white;
+        }
+
+        .category {
+            font-size: 50px;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .course-top h3 {
+            font-size: 25px;
+        }
+
+        .course-body {
+            padding: 30px;
+        }
+
+        .course-body ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .course-body li {
+            margin: 10px 0;
+            color: var(--gray);
+        }
+
+        .course-body li::before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .price {
+            font-size: 30px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        /* =========================
+           PRICES
+        ========================= */
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .price-card {
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 35px;
+            position: relative;
+        }
+
+        .price-card.featured {
+            border: 2px solid var(--primary);
+            transform: scale(1.03);
+        }
+
+        .popular {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .price-card h3 {
+            font-size: 23px;
+        }
+
+        .price-number {
+            font-size: 38px;
+            font-weight: 800;
+            margin: 15px 0;
+        }
+
+        .price-card ul {
+            list-style: none;
+            margin: 20px 0 30px;
+        }
+
+        .price-card li {
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* =========================
+           INSTRUCTORS
+        ========================= */
+
+        .instructors {
+            background: var(--light);
+        }
+
+        .instructor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .instructor {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .instructor img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .instructor-info {
+            padding: 25px;
+        }
+
+        .instructor-info h3 {
+            font-size: 22px;
+        }
+
+        .instructor-info p {
+            color: var(--gray);
+        }
+
+        .stars {
+            color: #ffb400;
+            margin-top: 10px;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+        }
+
+        .about-content h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .advantages {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .advantage {
+            padding: 18px;
+            background: var(--light);
+            border-radius: 10px;
+        }
+
+        .advantage strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* =========================
+           REVIEWS
+        ========================= */
+
+        .reviews {
+            background: var(--dark);
+            color: white;
+        }
+
+        .reviews .section-title p {
+            color: #aaa;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .review {
+            background: var(--dark-light);
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .review .stars {
+            margin-bottom: 15px;
+        }
+
+        .review p {
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .review-author {
+            font-weight: bold;
+        }
+
+        /* =========================
+           BOOKING
+        ========================= */
+
+        .booking {
+            background: var(--light);
+        }
+
+        .booking-box {
+            max-width: 850px;
+            margin: auto;
+            background: white;
+            padding: 45px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,.08);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-message {
+            display: none;
+            background: #e9f9ee;
+            color: #18823b;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        /* =========================
+           CONTACTS
+        ========================= */
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .contact-info {
+            display: grid;
+            gap: 15px;
+        }
+
+        .contact-card {
+            display: flex;
+            gap: 18px;
+            padding: 25px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,91,34,.1);
+            color: var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            font-size: 22px;
+        }
+
+        .map {
+            width: 100%;
+            min-height: 430px;
+            border: 0;
+            border-radius: 15px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #090b0e;
+            color: white;
+            padding: 50px 0 25px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 35px;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+        }
+
+        footer p,
+        footer a {
+            color: #999;
+        }
+
+        footer a:hover {
+            color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 9px;
+        }
+
+        .copyright {
+            border-top: 1px solid #222;
+            margin-top: 35px;
+            padding-top: 20px;
+            text-align: center;
+            color: #777;
+        }
+
+        /* =========================
+           FLOATING BUTTONS
+        ========================= */
+
+        .floating-buttons {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .float-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,.25);
+            transition: .3s;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp {
+            background: var(--green);
+        }
+
+        .telegram {
+            background: var(--blue);
+        }
+
+        /* =========================
+           BACK TO TOP
+        ========================= */
+
+        #topBtn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 45px;
+            height: 45px;
+            border: none;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            z-index: 999;
+        }
+
+        /* =========================
+           АДАПТИВ
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: var(--dark);
+                flex-direction: column;
+                padding: 25px;
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .course-grid,
+            .pricing-grid,
+            .instructor-grid,
+            .reviews-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .section {
+                padding: 65px 0;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .stats-grid,
+            .course-grid,
+            .pricing-grid,
+            .instructor-grid,
+            .reviews-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .booking-box {
+                padding: 25px;
+            }
+
+            .price-card.featured {
+                transform: none;
+            }
+
+            .about-content h2 {
+                font-size: 32px;
+            }
+
+            .advantages {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+    <div class="container navbar">
+
+        <a href="#home" class="logo">
+            Drive<span>Pro</span>
+        </a>
+
+        <button class="menu-btn" id="menuBtn">
+            ☰
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Главная</a></li>
+            <li><a href="#courses">Категории</a></li>
+            <li><a href="#prices">Цены</a></li>
+            <li><a href="#instructors">Инструкторы</a></li>
+            <li><a href="#reviews">Отзывы</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+            <li>
+                <a href="#booking" class="nav-button">
+                    Записаться
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                🚗 Современная автошкола
+            </div>
+
+            <h1>
+                Научим водить
+                <span>уверенно</span>
+            </h1>
+
+            <p>
+                Получите водительские права вместе с DrivePro.
+                Теоретическая подготовка, практические занятия
+                и помощь на каждом этапе обучения.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#booking" class="btn btn-primary">
+                    Записаться на обучение
+                </a>
+
+                <a href="#courses" class="btn btn-outline">
+                    Посмотреть категории
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     STATS
+========================= -->
+
+<section class="stats">
+
+    <div class="container stats-grid">
+
+        <div class="stat">
+            <h3>10+</h3>
+            <p>лет опыта</p>
+        </div>
+
+        <div class="stat">
+            <h3>5000+</h3>
+            <p>выпускников</p>
+        </div>
+
+        <div class="stat">
+            <h3>95%</h3>
+            <p>сдают экзамен</p>
+        </div>
+
+        <div class="stat">
+            <h3>12</h3>
+            <p>инструкторов</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     COURSES
+========================= -->
+
+<section class="section courses" id="courses">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <span>Категории</span>
+
+            <h2>Выберите свою категорию</h2>
+
+            <p>
+                Обучаем вождению автомобилей и мототранспорта
+                по современным программам.
+            </p>
+
+        </div>
+
+
+        <div class="course-grid">
+
+            <!-- A -->
+
+            <div class="course-card">
+
+                <div class="course-top">
+                    <div class="category">A</div>
+                    <h3>Мотоциклы</h3>
+                </div>
+
+                <div class="course-body">
+
+                    <p>
+                        Обучение безопасному управлению мотоциклом.
+                    </p>
+
+                    <ul>
+                        <li>Теория ПДД</li>
+                        <li>Практика на площадке</li>
+                        <li>Подготовка к экзамену</li>
+                    </ul>
+
+                    <div class="price">
+                        80 000 ₸
+                    </div>
+
+                    <a href="#booking" class="btn btn-primary">
+                        Записаться
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- B -->
+
+            <div class="course-card">
+
+                <div class="course-top">
+                    <div class="category">B</div>
+                    <h3>Легковые автомобили</h3>
+                </div>
+
+                <div class="course-body">
+
+                    <p>
+                        Полный курс подготовки водителей категории B.
+                    </p>
+
+                    <ul>
+                        <li>Теория ПДД</li>
+                        <li>Практика в городе</li>
+                        <li>Подготовка к экзамену</li>
+                    </ul>
+
+                    <div class="price">
+                        120 000 ₸
+                    </div>
+
+                    <a href="#booking" class="btn btn-primary">
+                        Записаться
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- C -->
+
+            <div class="course-card">
+
+                <div class="course-top">
+                    <div class="category">C</div>
+                    <h3>Грузовые автомобили</h3>
+                </div>
+
+                <div class="course-body">
+
+                    <p>
+                        Подготовка водителей грузового транспорта.
+                    </p>
+
+                    <ul>
+                        <li>Теория ПДД</li>
+                        <li>Практические занятия</li>
+                        <li>Подготовка к экзамену</li>
+                    </ul>
+
+                    <div class="price">
+                        160 000 ₸
+                    </div>
+
+                    <a href="#booking" class="btn btn-primary">
+                        Записаться
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PRICES
+========================= -->
+
+<section class="section" id="prices">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <span>Стоимость</span>
+
+            <h2>Тарифы обучения</h2>
+
+            <p>
+                Выберите подходящий вариант обучения.
+            </p>
+
+        </div>
+
+
+        <div class="pricing-grid">
+
+            <div class="price-card">
+
+                <h3>Стандарт</h3>
+
+                <div class="price-number">
+                    100 000 ₸
+                </div>
+
+                <p>Для тех, кто хочет получить базовые знания.</p>
+
+                <ul>
+                    <li>✓ Теория</li>
+                    <li>✓ Практические занятия</li>
+                    <li>✓ Учебные материалы</li>
+                    <li>✓ Консультация</li>
+                </ul>
+
+                <a href="#booking" class="btn btn-primary">
+                    Выбрать
+                </a>
+
+            </div>
+
+
+            <div class="price-card featured">
+
+                <div class="popular">
+                    ПОПУЛЯРНЫЙ
+                </div>
+
+                <h3>Премиум</h3>
+
+                <div class="price-number">
+                    150 000 ₸
+                </div>
+
+                <p>Максимальная подготовка к экзамену.</p>
+
+                <ul>
+                    <li>✓ Теория</li>
+                    <li>✓ Увеличенное количество практики</li>
+                    <li>✓ Индивидуальный инструктор</li>
+                    <li>✓ Подготовка к экзамену</li>
+                    <li>✓ Консультации</li>
+                </ul>
+
+                <a href="#booking" class="btn btn-primary">
+                    Выбрать
+                </a>
+
+            </div>
+
+
+            <div class="price-card">
+
+                <h3>Индивидуальный</h3>
+
+                <div class="price-number">
+                    200 000 ₸
+                </div>
+
+                <p>Индивидуальный график и персональный подход.</p>
+
+                <ul>
+                    <li>✓ Персональный инструктор</li>
+                    <li>✓ Индивидуальный график</li>
+                    <li>✓ Дополнительная практика</li>
+                    <li>✓ Подготовка к экзамену</li>
+                </ul>
+
+                <a href="#booking" class="btn btn-primary">
+                    Выбрать
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section class="section">
+
+    <div class="container about-grid">
+
+        <div class="about-image">
+
+            <img
+                src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"
+                alt="Автомобиль">
+
+        </div>
+
+
+        <div class="about-content">
+
+            <span style="color:var(--primary);font-weight:bold;">
+                ПОЧЕМУ DRIVEPRO
+            </span>
+
+            <h2>
+                Учим не просто сдавать экзамен,
+                а действительно водить
+            </h2>
+
+            <p>
+                Наша задача — сделать так, чтобы после окончания
+                автошколы вы чувствовали себя уверенно за рулём.
+            </p>
+
+            <p>
+                Мы используем современные учебные программы,
+                опытных инструкторов и автомобили, оборудованные
+                для обучения.
+            </p>
+
+
+            <div class="advantages">
+
+                <div class="advantage">
+                    <strong>🚗 Современные автомобили</strong>
+                    <span>Безопасные машины для обучения.</span>
+                </div>
+
+                <div class="advantage">
+                    <strong>👨‍🏫 Опытные инструкторы</strong>
+                    <span>Профессионалы своего дела.</span>
+                </div>
+
+                <div class="advantage">
+                    <strong>📚 Теория онлайн</strong>
+                    <span>Учитесь в удобное время.</span>
+                </div>
+
+                <div class="advantage">
+                    <strong>🏆 Высокий результат</strong>
+                    <span>Помогаем подготовиться к экзамену.</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     INSTRUCTORS
+========================= -->
+
+<section class="section instructors" id="instructors">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <span>Команда</span>
+
+            <h2>Наши инструкторы</h2>
+
+            <p>
+                Опытные преподаватели помогут вам уверенно
+                освоить теорию и практику.
+            </p>
+
+        </div>
+
+
+        <div class="instructor-grid">
+
+            <div class="instructor">
+
+                <img
+                    src="https://randomuser.me/api/portraits/men/32.jpg"
+                    alt="Александр">
+
+                <div class="instructor-info">
+
+                    <h3>Александр Иванов</h3>
+
+                    <p>Инструктор категории B</p>
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="instructor">
+
+                <img
+                    src="https://randomuser.me/api/portraits/women/44.jpg"
+                    alt="Анна">
+
+                <div class="instructor-info">
+
+                    <h3>Анна Петрова</h3>
+
+                    <p>Инструктор категории B</p>
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="instructor">
+
+                <img
+                    src="https://randomuser.me/api/portraits/men/75.jpg"
+                    alt="Максим">
+
+                <div class="instructor-info">
+
+                    <h3>Максим Соколов</h3>
+
+                    <p>Инструктор категорий B и C</p>
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     REVIEWS
+========================= -->
+
+<section class="section reviews" id="reviews">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <span>Отзывы</span>
+
+            <h2>Что говорят ученики</h2>
+
+            <p>
+                Нам важно, чтобы каждый ученик получил
+                качественное обучение.
+            </p>
+
+        </div>
+
+
+        <div class="reviews-grid">
+
+            <div class="review">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    "Отличная автошкола! Инструктор спокойно
+                    объяснял все ошибки. Экзамен сдала с первого раза."
+                </p>
+
+                <div class="review-author">
+                    — Алина
+                </div>
+
+            </div>
+
+
+            <div class="review">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    "Очень понравилось обучение. Машины хорошие,
+                    инструкторы профессиональные."
+                </p>
+
+                <div class="review-author">
+                    — Данияр
+                </div>
+
+            </div>
+
+
+            <div class="review">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    "Спасибо DrivePro! Теперь спокойно езжу по городу
+                    и не боюсь дороги."
+                </p>
+
+                <div class="review-author">
+                    — Мария
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BOOKING
+========================= -->
+
+<section class="section booking" id="booking">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <span>Запись</span>
+
+            <h2>Запишитесь на обучение</h2>
+
+            <p>
+                Оставьте свои данные и мы свяжемся с вами.
+            </p>
+
+        </div>
+
+
+        <div class="booking-box">
+
+            <form id="bookingForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Ваше имя
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Введите имя"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Телефон
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="+7 (___) ___-__-__"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="category">
+                            Категория
+                        </label>
+
+                        <select id="category" required>
+
+                            <option value="">
+                                Выберите категорию
+                            </option>
+
+                            <option value="A">
+                                A — Мотоцикл
+                            </option>
+
+                            <option value="B">
+                                B — Легковой автомобиль
+                            </option>
+
+                            <option value="C">
+                                C — Грузовой автомобиль
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="date">
+                            Желаемая дата
+                        </label>
+
+                        <input
+                            type="date"
+                            id="date">
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label for="message">
+                            Сообщение
+                        </label>
+
+                        <textarea
+                            id="message"
+                            placeholder="Напишите дополнительные пожелания..."></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    style="width:100%;">
+
+                    Отправить заявку
+
+                </button>
+
+
+                <div
+                    class="form-message"
+                    id="formMessage">
+
+                    ✅ Спасибо! Ваша заявка отправлена.
+                    Мы свяжемся с вами в ближайшее время.
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACTS
+========================= -->
+
+<section class="section" id="contacts">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <span>Контакты</span>
+
+            <h2>Свяжитесь с нами</h2>
+
+            <p>
+                Будем рады ответить на ваши вопросы.
+            </p>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+            <div class="contact-info">
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">
+                        📍
+                    </div>
+
+                    <div>
+
+                        <h3>Адрес</h3>
+
+                        <p>
+                            г. Астана, ул. Примерная, 25
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">
+                        📞
+                    </div>
+
+                    <div>
+
+                        <h3>Телефон</h3>
+
+                        <p>
+                            +7 777 123 45 67
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">
+                        ✉️
+                    </div>
+
+                    <div>
+
+                        <h3>Email</h3>
+
+                        <p>
+                            info@drivepro.kz
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">
+                        🕐
+                    </div>
+
+                    <div>
+
+                        <h3>Режим работы</h3>
+
+                        <p>
+                            Пн–Сб: 09:00–20:00
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Карта -->
+
+            <iframe
+                class="map"
+                src="https://www.google.com/maps?q=Astana,Kazakhstan&output=embed"
+                loading="lazy">
+            </iframe>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div>
+
+                <div class="logo">
+                    Drive<span>Pro</span>
+                </div>
+
+                <p style="margin-top:15px;">
+                    Современная автошкола,
+                    которая помогает получить права
+                    и уверенность за рулём.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>Навигация</h3>
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a href="#home">Главная</a>
+                    </li>
+
+                    <li>
+                        <a href="#courses">Категории</a>
+                    </li>
+
+                    <li>
+                        <a href="#prices">Цены</a>
+                    </li>
+
+                    <li>
+                        <a href="#booking">Запись</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h3>Обучение</h3>
+
+                <ul class="footer-links">
+
+                    <li>
+                        <a href="#courses">Категория A</a>
+                    </li>
+
+                    <li>
+                        <a href="#courses">Категория B</a>
+                    </li>
+
+                    <li>
+                        <a href="#courses">Категория C</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h3>Контакты</h3>
+
+                <p>+7 777 123 45 67</p>
+                <p>info@drivepro.kz</p>
+                <p>Астана, Казахстан</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 DrivePro. Все права защищены.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================
+     WHATSAPP / TELEGRAM
+========================= -->
+
+<div class="floating-buttons">
+
+    <a
+        class="float-btn whatsapp"
+        href="https://wa.me/77771234567"
+        target="_blank"
+        title="WhatsApp">
+
+        ☎
+
+    </a>
+
+
+    <a
+        class="float-btn telegram"
+        href="https://t.me/drivepro"
+        target="_blank"
+        title="Telegram">
+
+        ➤
+
+    </a>
+
+</div>
+
+
+<!-- КНОПКА НАВЕРХ -->
+
+<button id="topBtn">
+    ↑
+</button>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+    /* =========================
+       МОБИЛЬНОЕ МЕНЮ
+    ========================= */
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", function () {
+
+        navLinks.classList.toggle("active");
+
+    });
+
+
+    /* Закрываем меню после клика */
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+
+        link.addEventListener("click", function () {
+
+            navLinks.classList.remove("active");
+
+        });
+
+    });
+
+
+    /* =========================
+       ФОРМА ЗАПИСИ
+    ========================= */
+
+    const bookingForm = document.getElementById("bookingForm");
+    const formMessage = document.getElementById("formMessage");
+
+    bookingForm.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const phone = document.getElementById("phone").value;
+        const category = document.getElementById("category").value;
+
+        if (!name || !phone || !category) {
+
+            alert("Пожалуйста, заполните обязательные поля.");
+
+            return;
+        }
+
+        formMessage.style.display = "block";
+
+        bookingForm.reset();
+
+        setTimeout(function() {
+
+            formMessage.style.display = "none";
+
+        }, 6000);
+
+    });
+
+
+    /* =========================
+       КНОПКА НАВЕРХ
+    ========================= */
+
+    const topBtn = document.getElementById("topBtn");
+
+    window.addEventListener("scroll", function() {
+
+        if (window.scrollY > 500) {
+
+            topBtn.style.display = "block";
+
+        } else {
+
+            topBtn.style.display = "none";
+
+        }
+
+    });
+
+
+    topBtn.addEventListener("click", function() {
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+
+    /* =========================
+       АНИМАЦИЯ ПОЯВЛЕНИЯ
+    ========================= */
+
+    const observer = new IntersectionObserver(
+
+        function(entries) {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.15
+        }
+
+    );
+
+
+    document.querySelectorAll(
+        ".course-card, .price-card, .instructor, .review, .contact-card"
+    ).forEach(element => {
+
+        element.style.opacity = "0";
+        element.style.transform = "translateY(30px)";
+        element.style.transition = "all .6s ease";
+
+        observer.observe(element);
+
+    });
+
+</script>
+
+</body>
+</html>
